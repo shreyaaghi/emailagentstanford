@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Email Inbox Agent</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <div>
+        <div class="eyebrow">EMAIL INBOX AGENT</div>
+        <h1>Inbox Assistant</h1>
+      </div>
+    </div>
+    <div class="header-stats">
+      <div class="pill" id="unread-pill">unread</div>
+      <div class="pill" id="urgent-pill">urgent</div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel chat-panel">
+      <div class="panel-head">
+        <div class="eyebrow">AGENT CHAT</div>
+        <div class="panel-title-row">
+          <h2>Inbox triage</h2>
+          <div class="badges">
+            <span class="badge badge-mode" id="mode-badge">Local</span>
+            <button class="btn-outline" id="reset-btn">Reset inbox</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-thread" id="chat-thread">
+        <div class="chat-bubble agent">
+          Ask me to summarize your unread mail, flag what's urgent, build a to-do list, or draft a reply.
+        </div>
+      </div>
+
+      <div class="quick-chips" id="quick-chips">
+        <button class="chip" data-prompt="Summarize my unread emails">Summarize unread</button>
+        <button class="chip" data-prompt="What's urgent right now?">What's urgent</button>
+        <button class="chip" data-prompt="Build a to-do list from my inbox">Build to-do list</button>
+        <button class="chip" data-prompt="Draft a reply to the most urgent email">Draft a reply</button>
+      </div>
+
+      <form class="chat-input-row" id="chat-form">
+        <input type="text" id="chat-input" placeholder="Ask anything about your inbox..." autocomplete="off" />
+        <button type="submit" class="btn-primary">Send</button>
+      </form>
+    </section>
+
+    <section class="panel inbox-panel">
+      <div class="panel-head">
+        <div class="eyebrow">INBOX</div>
+        <div class="panel-title-row">
+          <h2>Your mail</h2>
+        </div>
+        <p class="panel-sub">Ask the agent something, or click an email to read it.</p>
+      </div>
+
+      <div class="inbox-hero">
+        <div class="eyebrow">STATUS</div>
+        <div class="hero-headline" id="hero-headline">All caught up?</div>
+      </div>
+
+      <div class="inbox-list" id="inbox-list"></div>
+    </section>
+  </main>
+
+  <footer class="agent-work">
+    <div class="panel-head">
+      <div class="eyebrow">AGENT WORK</div>
+      <h2 id="agent-work-title">Ready for your first question</h2>
+    </div>
+    <p class="panel-sub" id="agent-work-sub">Try one of the quick prompts above, or type your own.</p>
+    <div class="work-cards" id="work-cards">
+      <div class="work-card">
+        <span class="dot"></span>
+        <div>
+          <div class="work-title">Summarize</div>
+          <div class="work-desc">Rolls up unread mail into a quick brief.</div>
+        </div>
+      </div>
+      <div class="work-card">
+        <span class="dot"></span>
+        <div>
+          <div class="work-title">Prioritize</div>
+          <div class="work-desc">Flags what needs attention first.</div>
+        </div>
+      </div>
+      <div class="work-card">
+        <span class="dot"></span>
+        <div>
+          <div class="work-title">To-do list</div>
+          <div class="work-desc">Turns unread mail into next actions.</div>
+        </div>
+      </div>
+      <div class="work-card">
+        <span class="dot"></span>
+        <div>
+          <div class="work-title">Draft reply</div>
+          <div class="work-desc">Prepares a reply you can edit and send.</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
