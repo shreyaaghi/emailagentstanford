@@ -4,20 +4,23 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Email Inbox Agent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="app-header">
     <div class="brand">
-      <span class="brand-dot"></span>
+      <span class="status-light" id="status-light"></span>
       <div>
-        <div class="eyebrow">EMAIL INBOX AGENT</div>
+        <div class="eyebrow">INBOX_AGENT / TRIAGE CONSOLE</div>
         <h1>Inbox Assistant</h1>
       </div>
     </div>
     <div class="header-stats">
-      <div class="pill" id="unread-pill">unread</div>
-      <div class="pill" id="urgent-pill">urgent</div>
+      <div class="stat" id="unread-pill"><span class="stat-num">0</span><span class="stat-label">unread</span></div>
+      <div class="stat" id="urgent-pill"><span class="stat-num">0</span><span class="stat-label">priority</span></div>
     </div>
   </header>
 
@@ -63,8 +66,11 @@
       </div>
 
       <div class="inbox-hero">
-        <div class="eyebrow">STATUS</div>
-        <div class="hero-headline" id="hero-headline">All caught up?</div>
+        <div class="hero-row">
+          <span class="eyebrow">STATUS</span>
+          <span class="hero-timestamp" id="hero-timestamp"></span>
+        </div>
+        <div class="hero-headline" id="hero-headline">SCANNING...</div>
       </div>
 
       <div class="inbox-list" id="inbox-list"></div>

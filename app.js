@@ -4,6 +4,7 @@ const chatInput = document.getElementById("chat-input");
 const quickChips = document.getElementById("quick-chips");
 const inboxList = document.getElementById("inbox-list");
 const heroHeadline = document.getElementById("hero-headline");
+const heroTimestamp = document.getElementById("hero-timestamp");
 const unreadPill = document.getElementById("unread-pill");
 const urgentPill = document.getElementById("urgent-pill");
 const modeBadge = document.getElementById("mode-badge");
@@ -22,26 +23,38 @@ function timeAgo(iso) {
   return `${Math.round(hours / 24)}d ago`;
 }
 
+function initialsOf(sender) {
+  return sender
+    .split(" ")
+    .filter((p) => !/^(prof\.?|dr\.?|mr\.?|ms\.?|mrs\.?)$/i.test(p))
+    .slice(0, 2)
+    .map((p) => p[0])
+    .join("")
+    .toUpperCase();
+}
+
 function renderInbox() {
   const emails = state.inbox.emails || [];
   const unread = emails.filter((e) => e.unread);
   const urgent = emails.filter((e) => e.urgent);
 
-  unreadPill.textContent = `${unread.length} unread`;
-  urgentPill.textContent = `${urgent.length} urgent`;
-  heroHeadline.textContent = unread.length ? "You've got mail" : "All caught up";
+  unreadPill.querySelector(".stat-num").textContent = unread.length;
+  urgentPill.querySelector(".stat-num").textContent = urgent.length;
+  heroHeadline.textContent = unread.length ? `${unread.length} AWAITING TRIAGE` : "QUEUE CLEAR";
+  heroTimestamp.textContent = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 
   inboxList.innerHTML = "";
   emails.forEach((email) => {
     const row = document.createElement("div");
     row.className = `email-row${email.unread ? " unread" : ""}`;
     row.innerHTML = `
-      <span class="dot"></span>
+      <div class="avatar">${initialsOf(email.sender)}</div>
       <div class="email-body">
         <div class="email-sender">${email.sender}</div>
         <div class="email-subject">${email.subject}</div>
         <div class="email-snippet">${email.snippet}</div>
       </div>
+      ${email.urgent ? '<span class="stamp">PRIORITY</span>' : ""}
       <div class="email-time">${timeAgo(email.timestamp)}</div>
     `;
     row.addEventListener("click", () => {
