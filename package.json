@@ -1,0 +1,13 @@
+{
+    "name": "email-inbox-agent",
+    "version": "0.1.0",
+    "description": "Email inbox triage agent demo for the Stanford Deliberative Democracy Lab AI agent demos project.",
+    "type": "module",
+    "main": "server.mjs",
+    "scripts": {
+      "start": "node server.mjs",
+      "test": "node --test"
+    },
+    "license": "UNLICENSED"
+  
+}
